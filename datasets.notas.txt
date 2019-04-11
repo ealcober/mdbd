@@ -1,9 +1,5 @@
-datasets
-com madrid, recogida separada de caucho y plástico 2004-2016
-com madrid, nacional, caucho, plásticos, envases y totales
-madrid, datos atmosféricos del parque del retiro 2013-2017
-nacional, Gasto de las empresas en protección ambiental, para cada clase de industria, 2008-2016
-
+ya está el código de carga de los datos:
+----------------------------------------
 ourworldindata.org
 global plastic fate- destino del plastico reciclado, incinerado o descartado. 1980-2015
 global plastic production-1950-2015
@@ -11,8 +7,26 @@ mean years of schooling,1870-2010
 per capita mismanaged plastic waste 1800-2016
 surface plastic mass by ocean 2013
 syb61_t07_education, mundial 2005-2016
+
+recursos / códigos / cruzar tablas
+----------------------------------
 country-and-continent-codes-list-csv https://datahub.io/JohnSnowLabs/country-and-continent-codes-list#data
-co2-ppm Trends in Atmospheric Carbon Dioxide 1960-2010
+
+
+----------------------------------------------------------------------------
+PRÓXIMO HITO DESPUÉS DE SEMANA SANTA TODOS LOS DATOS LIMPIOS Y REPRESENTADOS -> semana 22/04/2019
+----------------------------------------------------------------------------
+
+edu
+
+nacional, Gasto de las empresas en protección ambiental, para cada clase de industria, 2008-2016
+com madrid, recogida separada de caucho y plástico 2004-2016
 global-temp 1880-2016
+
+agus
+
+com madrid, nacional, caucho, plásticos, envases y totales
+co2-ppm Trends in Atmospheric Carbon Dioxide 1960-2010
 Education statics all indicators, by country, year, 
+
 
