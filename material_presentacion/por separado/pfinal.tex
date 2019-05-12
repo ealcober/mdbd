@@ -1,0 +1,753 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{pfinal}
+    
+    
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{carga-de-datos-y-preparaciuxf3n-del-espacio-de-trabajo.}{%
+\section{Carga de datos y preparación del espacio de
+trabajo.}\label{carga-de-datos-y-preparaciuxf3n-del-espacio-de-trabajo.}}
+
+\hypertarget{cargamos-las-bibliotecas-libreruxedas-que-utilizamos}{%
+\subsection{Cargamos las bibliotecas / librerías que
+utilizamos}\label{cargamos-las-bibliotecas-libreruxedas-que-utilizamos}}
+
+\hypertarget{definimos-las-funciones-user-defined-que-hemos-necesitado}{%
+\subsection{Definimos las funciones user-defined que hemos
+necesitado}\label{definimos-las-funciones-user-defined-que-hemos-necesitado}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{c+c1}{\PYZsh{} Preparamos el espacio de trabajo}
+         \PY{c+c1}{\PYZsh{} setwd(\PYZsq{}/Users/agus/Downloads/mdbd\PYZhy{}master\PYZhy{}3/proyecto\PYZus{}final\PYZsq{})}
+         \PY{n+nf}{setwd}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{C:/Users/ealcober/git/mdbd/proyecto\PYZus{}final\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{r} \PY{o}{=} \PY{n+nf}{getOption}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{repos\PYZdq{}}\PY{p}{)}
+         \PY{n}{r}\PY{n}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{CRAN\PYZdq{}}\PY{n}{]} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{http://cran.us.r\PYZhy{}project.org\PYZdq{}}
+         \PY{n+nf}{options}\PY{p}{(}\PY{n}{repos} \PY{o}{=} \PY{n}{r}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} para trabajar con ficheros excel}
+         \PY{n+nf}{if}\PY{p}{(}\PY{o}{!}\PY{n+nf}{require}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{XLConnect\PYZdq{}}\PY{p}{)}\PY{p}{)}\PY{n+nf}{install.packages}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{XLConnect\PYZdq{}}\PY{p}{)} 
+         \PY{n+nf}{library}\PY{p}{(}\PY{n}{XLConnect}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} dep 1}
+         \PY{n+nf}{if}\PY{p}{(}\PY{o}{!}\PY{n+nf}{require}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{dplyr\PYZdq{}}\PY{p}{)}\PY{p}{)}\PY{n+nf}{install.packages}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{dplyr\PYZdq{}}\PY{p}{)} 
+         \PY{n+nf}{library}\PY{p}{(}\PY{n}{dplyr}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} dep 2}
+         \PY{n+nf}{if}\PY{p}{(}\PY{o}{!}\PY{n+nf}{require}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{ggplot2\PYZdq{}}\PY{p}{)}\PY{p}{)}\PY{n+nf}{install.packages}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{ggplot2\PYZdq{}}\PY{p}{,} \PY{n}{repos}\PY{o}{=}\PY{n}{repos}\PY{p}{)} 
+         \PY{n+nf}{library}\PY{p}{(}\PY{n}{ggplot2}\PY{p}{)}
+         
+         \PY{n+nf}{if}\PY{p}{(}\PY{o}{!}\PY{n+nf}{require}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{caTools\PYZdq{}}\PY{p}{)}\PY{p}{)}\PY{n+nf}{install.packages}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{caTools\PYZdq{}}\PY{p}{,} \PY{n}{repos}\PY{o}{=}\PY{n}{repos}\PY{p}{)}
+         \PY{n+nf}{library}\PY{p}{(}\PY{n}{caTools}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} dep 3}
+         \PY{n+nf}{if}\PY{p}{(}\PY{o}{!}\PY{n+nf}{require}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{RColorBrewer\PYZdq{}}\PY{p}{)}\PY{p}{)}\PY{n+nf}{install.packages}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{RColorBrewer\PYZdq{}}\PY{p}{)} 
+         \PY{n+nf}{library}\PY{p}{(}\PY{n}{RColorBrewer}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Función para eliminar fila por índice}
+         \PY{n}{removeRowByIndex} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{function}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{row\PYZus{}index}\PY{p}{)} \PY{p}{\PYZob{}}
+           \PY{n}{nr} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{nrow}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+           \PY{n+nf}{if }\PY{p}{(}\PY{n}{nr} \PY{o}{\PYZlt{}} \PY{n}{row\PYZus{}index}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{n+nf}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{row\PYZus{}index exceeds number of rows\PYZsq{}}\PY{p}{)}
+           \PY{p}{\PYZcb{}} \PY{n}{else} \PY{n+nf}{if }\PY{p}{(}\PY{n}{row\PYZus{}index} \PY{o}{==} \PY{l+m}{1}\PY{p}{)}
+           \PY{p}{\PYZob{}}
+             \PY{n+nf}{return}\PY{p}{(}\PY{n}{x}\PY{n}{[2}\PY{o}{:}\PY{n}{nr}\PY{p}{,} \PY{n}{]}\PY{p}{)}
+           \PY{p}{\PYZcb{}} \PY{n}{else} \PY{n+nf}{if }\PY{p}{(}\PY{n}{row\PYZus{}index} \PY{o}{==} \PY{n}{nr}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{n+nf}{return}\PY{p}{(}\PY{n}{x}\PY{n}{[1}\PY{o}{:}\PY{p}{(}\PY{n}{nr} \PY{o}{\PYZhy{}} \PY{l+m}{1}\PY{p}{)}\PY{p}{,} \PY{n}{]}\PY{p}{)}
+           \PY{p}{\PYZcb{}} \PY{n}{else} \PY{p}{\PYZob{}}
+             \PY{n+nf}{return }\PY{p}{(}\PY{n}{x}\PY{n+nf}{[c}\PY{p}{(}\PY{l+m}{1}\PY{o}{:}\PY{p}{(}\PY{n}{row\PYZus{}index} \PY{o}{\PYZhy{}} \PY{l+m}{1}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{row\PYZus{}index} \PY{o}{+} \PY{l+m}{1}\PY{p}{)}\PY{o}{:}\PY{n}{nr}\PY{p}{)}\PY{p}{,} \PY{n}{]}\PY{p}{)}
+           \PY{p}{\PYZcb{}}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+c1}{\PYZsh{} Funcion que convierte a 0\PYZsq{}s los NAs}
+         \PY{n}{haz.cero.na}\PY{o}{=}\PY{n+nf}{function}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{\PYZob{}}
+           \PY{n+nf}{ifelse}\PY{p}{(}\PY{n+nf}{is.na}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}\PY{l+m}{0}\PY{p}{,}\PY{n}{x}\PY{p}{)}\PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+    \hypertarget{nuestra-hipuxf3tesis-inicial}{%
+\section{Nuestra hipótesis
+inicial:}\label{nuestra-hipuxf3tesis-inicial}}
+
+\hypertarget{queremos-encontrar-si-existe-una-relaciuxf3n-entre-el-nivel-educativo-de-la-poblaciuxf3n-y-el-nivel-de-uso-de-pluxe1stico-y-su-gestiuxf3n-en-el-rango-de-auxf1os-1960-2010.}{%
+\subsection{Queremos encontrar, si existe, una relación entre el nivel
+educativo de la población y el nivel de uso de plástico y su gestión en
+el rango de años
+1960-2010.}\label{queremos-encontrar-si-existe-una-relaciuxf3n-entre-el-nivel-educativo-de-la-poblaciuxf3n-y-el-nivel-de-uso-de-pluxe1stico-y-su-gestiuxf3n-en-el-rango-de-auxf1os-1960-2010.}}
+
+\hypertarget{de-forma-intuitiva-ante-el-incremento-del-efecto-invernadero-y-la-cantidad-de-pluxe1stico-producida-industrialmente-una-poblaciuxf3n-con-mejor-formaciuxf3n-y-educaciuxf3n-habruxeda-de-ser-muxe1s-eficiente-en-el-tratamiento-de-residuos-o-en-sus-elecciones-a-la-hora-de-escoger-en-sus-compras-otro-tipo-de-residuos-no-pluxe1sticos.}{%
+\subsection{De forma intuitiva, ante el incremento del efecto
+invernadero y la cantidad de plástico producida industrialmente, una
+población con mejor formación y educación habría de ser más eficiente en
+el tratamiento de residuos, o en sus elecciones a la hora de escoger en
+sus compras, otro tipo de residuos no
+plásticos.}\label{de-forma-intuitiva-ante-el-incremento-del-efecto-invernadero-y-la-cantidad-de-pluxe1stico-producida-industrialmente-una-poblaciuxf3n-con-mejor-formaciuxf3n-y-educaciuxf3n-habruxeda-de-ser-muxe1s-eficiente-en-el-tratamiento-de-residuos-o-en-sus-elecciones-a-la-hora-de-escoger-en-sus-compras-otro-tipo-de-residuos-no-pluxe1sticos.}}
+
+\hypertarget{comenzamos-exponiendo-brevemente-unas-cifras-que-ilustran-la-producciuxf3n-de-pluxe1stico-global-en-toneladas-en-serie-temporal-sobre-la-gruxe1fica-de-media-de-auxf1os-que-un-adulto-pasa-escolarizado-a-lo-largo-de-los-auxf1os-estudiados.}{%
+\section{Comenzamos exponiendo brevemente unas cifras que ilustran la
+Producción de plástico global en Toneladas, en serie temporal, sobre la
+gráfica de ``media de años que un adulto pasa escolarizado'' a lo largo
+de los años
+estudiados.}\label{comenzamos-exponiendo-brevemente-unas-cifras-que-ilustran-la-producciuxf3n-de-pluxe1stico-global-en-toneladas-en-serie-temporal-sobre-la-gruxe1fica-de-media-de-auxf1os-que-un-adulto-pasa-escolarizado-a-lo-largo-de-los-auxf1os-estudiados.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{gpp}\PY{o}{\PYZlt{}\PYZhy{}}\PY{n+nf}{read.csv}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{sources/global\PYZhy{}plastics\PYZhy{}production.csv\PYZsq{}}\PY{p}{,}\PY{n}{header}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{,}\PY{n}{sep}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{,\PYZdq{}} \PY{p}{,} \PY{n}{quote}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}\PYZdq{}\PYZdq{}}\PY{p}{,}\PY{n}{dec}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{.\PYZdq{}}\PY{p}{,}\PY{n}{fill}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         \PY{n}{sch}\PY{o}{\PYZlt{}\PYZhy{}}\PY{n+nf}{read.csv}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{sources/mean\PYZhy{}years\PYZhy{}of\PYZhy{}schooling\PYZhy{}selected\PYZhy{}countries.csv\PYZsq{}}\PY{p}{,}\PY{n}{header}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{,}\PY{n}{sep}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{,\PYZdq{}} \PY{p}{,} \PY{n}{quote}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}\PYZdq{}\PYZdq{}}\PY{p}{,}\PY{n}{dec}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{.\PYZdq{}}\PY{p}{,}\PY{n}{fill}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         
+         \PY{n}{gpp}\PY{o}{\PYZdl{}}\PY{n}{Entity} \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kc}{NULL}
+         \PY{n}{gpp}\PY{o}{\PYZdl{}}\PY{n}{Code} \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kc}{NULL}
+         
+         \PY{c+c1}{\PYZsh{} Arreglamos los nombres de las variables }
+         \PY{n+nf}{colnames}\PY{p}{(}\PY{n}{gpp}\PY{p}{)} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Year\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Prod de plastico global\PYZdq{}}\PY{p}{)}
+         \PY{n+nf}{colnames}\PY{p}{(}\PY{n}{sch}\PY{p}{)} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Entity\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Code\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Year\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{TotalYearsAtSchool\PYZdq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Sumamos por año, calculando la media de años que pasa escolarizada cada persona}
+         \PY{n}{schmean}\PY{o}{\PYZlt{}\PYZhy{}}\PY{n+nf}{aggregate.data.frame}\PY{p}{(}\PY{n}{sch}\PY{o}{\PYZdl{}}\PY{n}{TotalYearsAtSchool} \PY{p}{,}\PY{n+nf}{list}\PY{p}{(}\PY{n}{sch}\PY{o}{\PYZdl{}}\PY{n}{Year}\PY{p}{)}\PY{p}{,} \PY{n}{FUN}\PY{o}{=}\PY{n}{mean}\PY{p}{)}
+         \PY{n+nf}{colnames}\PY{p}{(}\PY{n}{schmean}\PY{p}{)} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Year\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{mean escolarizados\PYZdq{}}\PY{p}{)}
+         \PY{n}{prueba} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{merge}\PY{p}{(}\PY{n}{gpp}\PY{p}{,} \PY{n}{schmean}\PY{p}{,} \PY{n}{by.y}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Year\PYZdq{}}\PY{p}{,} \PY{n}{sort} \PY{o}{=} \PY{k+kc}{TRUE}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Dividimos las cantidades a x10 toneladas (1 unidad son 10 toneladas) por proporcionalidad con la otra magnitud}
+         \PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{`Prod de plastico global`} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{`Prod de plastico global`} \PY{o}{/} \PY{l+m}{10000000}
+         
+         \PY{c+c1}{\PYZsh{} Imprimimos la tabla y el gráfico con su leyenda correspondiente.}
+         \PY{c+c1}{\PYZsh{} Muestra de ambas tablas}
+         \PY{n+nf}{tail}\PY{p}{(}\PY{n}{gpp}\PY{p}{)}
+         \PY{n+nf}{tail}\PY{p}{(}\PY{n}{sch}\PY{p}{)}
+         \PY{n+nf}{plot}\PY{p}{(}\PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{Year}\PY{p}{,}\PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{`Prod de plastico global`}\PY{p}{,}\PY{n}{type}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{l\PYZdq{}}\PY{p}{,}\PY{n}{col}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{blue\PYZdq{}}\PY{p}{,} 
+              \PY{n}{xlim}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1960}\PY{p}{,}\PY{l+m}{2010}\PY{p}{)}\PY{p}{,} \PY{n}{xlab}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Years\PYZdq{}}\PY{p}{,} \PY{n}{ylab}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Value\PYZdq{}}\PY{p}{)}
+         \PY{n+nf}{lines}\PY{p}{(}\PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{Year}\PY{p}{,}\PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{`mean escolarizados`}\PY{p}{,}\PY{n}{col}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{red\PYZdq{}}\PY{p}{)}
+         
+         \PY{n+nf}{legend}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{bottomleft\PYZdq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Toneladas de plástico producidas\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Media de años de escolarización p/c\PYZdq{}}\PY{p}{)}\PY{p}{,}
+               \PY{n}{col}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{blue\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{red\PYZdq{}}\PY{p}{)}\PY{p}{,}
+               \PY{n}{pch}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+m}{20}\PY{p}{,}\PY{l+m}{20}\PY{p}{)}\PY{p}{,}
+                \PY{n}{inset}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+m}{0.005}\PY{p}{,}\PY{l+m}{0.83}\PY{p}{)}
+               \PY{p}{)}
+\end{Verbatim}
+
+    \begin{tabular}{r|ll}
+  & Year & Prod de plastico global\\
+\hline
+	61 & 2010      & 313000000\\
+	62 & 2011      & 325000000\\
+	63 & 2012      & 338000000\\
+	64 & 2013      & 352000000\\
+	65 & 2014      & 367000000\\
+	66 & 2015      & 381000000\\
+\end{tabular}
+
+
+    
+    \begin{tabular}{r|llll}
+  & Entity & Code & Year & TotalYearsAtSchool\\
+\hline
+	3214 & Zimbabwe & ZWE      & 1985     & 4.84    \\
+	3215 & Zimbabwe & ZWE      & 1990     & 5.97    \\
+	3216 & Zimbabwe & ZWE      & 1995     & 6.85    \\
+	3217 & Zimbabwe & ZWE      & 2000     & 7.26    \\
+	3218 & Zimbabwe & ZWE      & 2005     & 7.65    \\
+	3219 & Zimbabwe & ZWE      & 2010     & 7.86    \\
+\end{tabular}
+
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_3_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{vamos-a-buscar-una-relaciuxf3n-entre-ambas-variables-colocuxe1ndolas-en-ambos-ejes-respectivos-x-e-y-en-una-gruxe1fica-de-2d.}{%
+\section{vamos a buscar una relación entre ambas variables, colocándolas
+en ambos ejes respectivos x e y en una gráfica de
+2d.}\label{vamos-a-buscar-una-relaciuxf3n-entre-ambas-variables-colocuxe1ndolas-en-ambos-ejes-respectivos-x-e-y-en-una-gruxe1fica-de-2d.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{c+c1}{\PYZsh{} agrupación de ambas tablas por año}
+         \PY{n}{prueba} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{merge}\PY{p}{(}\PY{n}{gpp}\PY{p}{,} \PY{n}{schmean}\PY{p}{,} \PY{n}{by.y}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Year\PYZdq{}}\PY{p}{,} \PY{n}{sort} \PY{o}{=} \PY{k+kc}{TRUE}\PY{p}{)}
+         
+         
+         
+         \PY{n}{prueba}\PY{o}{\PYZlt{}\PYZhy{}}\PY{n}{prueba}\PY{n}{[}\PY{p}{,}\PY{l+m}{\PYZhy{}1}\PY{n}{]}
+         \PY{n}{prueba}
+         \PY{n+nf}{colnames}\PY{p}{(}\PY{n}{prueba}\PY{p}{)} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{y\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{x\PYZsq{}}\PY{p}{)}
+         \PY{n+nf}{ggplot}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{n+nf}{geom\PYZus{}point}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{prueba}\PY{p}{,} \PY{n+nf}{aes}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{y}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{xlab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Prod. Plástico Global (Variable Independiente)\PYZdq{}}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{ylab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Media años escolarización/persona (Variable Dependiente)\PYZdq{}}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{ggtitle}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Relación entre ambas variables\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{tabular}{r|ll}
+ Prod de plastico global & mean escolarizados\\
+\hline
+	   2000000 & 3.026036 \\
+	   4000000 & 3.253243 \\
+	   8000000 & 3.516486 \\
+	  17000000 & 3.878198 \\
+	  35000000 & 4.411892 \\
+	  46000000 & 4.949279 \\
+	  70000000 & 5.547838 \\
+	  90000000 & 6.095315 \\
+	 120000000 & 6.636126 \\
+	 156000000 & 7.155495 \\
+	 213000000 & 7.612883 \\
+	 263000000 & 8.139279 \\
+	 313000000 & 8.607477 \\
+\end{tabular}
+
+
+    
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_5_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{de-forma-contraria-a-como-esperuxe1bamos-la-proporciuxf3n-aumenta}{%
+\section{De forma contraria a como esperábamos la proporción
+aumenta:}\label{de-forma-contraria-a-como-esperuxe1bamos-la-proporciuxf3n-aumenta}}
+
+\hypertarget{a-lo-largo-de-los-auxf1os-ha-ido-aumentando-el-tiempo-medio-que-una-persona-pasa-escolarizada-en-su-vida-y-proporcionalmente-a-uxe9ste-la-cantidad-de-pluxe1stico-total-producido-en-esos-auxf1os.}{%
+\section{A lo largo de los años ha ido aumentando el tiempo medio que
+una persona pasa escolarizada en su vida, y proporcionalmente a éste, la
+cantidad de plástico total producido en esos
+años.}\label{a-lo-largo-de-los-auxf1os-ha-ido-aumentando-el-tiempo-medio-que-una-persona-pasa-escolarizada-en-su-vida-y-proporcionalmente-a-uxe9ste-la-cantidad-de-pluxe1stico-total-producido-en-esos-auxf1os.}}
+
+\hypertarget{vamos-a-tratar-de-aproximarnos-para-predicciones-posteriores-mediante-regresiuxf3n-partimos-el-conjunto-de-nuestros-datos-en-70-prueba-y-30-entrenamiento}{%
+\section{Vamos a tratar de aproximarnos para predicciones posteriores
+mediante regresión: partimos el conjunto de nuestros datos en 70\%
+prueba y 30\%
+entrenamiento}\label{vamos-a-tratar-de-aproximarnos-para-predicciones-posteriores-mediante-regresiuxf3n-partimos-el-conjunto-de-nuestros-datos-en-70-prueba-y-30-entrenamiento}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{split} \PY{o}{=} \PY{n+nf}{sample.split}\PY{p}{(}\PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{y}\PY{p}{,} \PY{n}{SplitRatio} \PY{o}{=} \PY{l+m}{0.7}\PY{p}{)}
+         \PY{n}{nltrain} \PY{o}{=} \PY{n+nf}{subset}\PY{p}{(}\PY{n}{prueba}\PY{p}{,} \PY{n}{split} \PY{o}{==} \PY{k+kc}{TRUE}\PY{p}{)}
+         \PY{n}{nltest} \PY{o}{=} \PY{n+nf}{subset}\PY{p}{(}\PY{n}{prueba}\PY{p}{,} \PY{n}{split} \PY{o}{==} \PY{k+kc}{FALSE}\PY{p}{)}
+         \PY{n}{nltest}
+         \PY{n}{nltrain}
+\end{Verbatim}
+
+    \begin{tabular}{r|ll}
+  & y & x\\
+\hline
+	5 &  35000000 & 4.411892 \\
+	6 &  46000000 & 4.949279 \\
+	9 & 120000000 & 6.636126 \\
+	11 & 213000000 & 7.612883 \\
+\end{tabular}
+
+
+    
+    \begin{tabular}{r|ll}
+  & y & x\\
+\hline
+	1 &   2000000 & 3.026036 \\
+	2 &   4000000 & 3.253243 \\
+	3 &   8000000 & 3.516486 \\
+	4 &  17000000 & 3.878198 \\
+	7 &  70000000 & 5.547838 \\
+	8 &  90000000 & 6.095315 \\
+	10 & 156000000 & 7.155495 \\
+	12 & 263000000 & 8.139279 \\
+	13 & 313000000 & 8.607477 \\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x2} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{n}{\PYZca{}2}
+         \PY{n+nf}{str}\PY{p}{(}\PY{n}{nltrain}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+'data.frame':	9 obs. of  3 variables:
+ \$ y : int  2000000 4000000 8000000 17000000 70000000 90000000 156000000 263000000 313000000
+ \$ x : num  3.03 3.25 3.52 3.88 5.55 {\ldots}
+ \$ x2: num  9.16 10.58 12.37 15.04 30.78 {\ldots}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n+nf}{ggplot}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{n+nf}{geom\PYZus{}point}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{nltrain}\PY{p}{,} \PY{n+nf}{aes}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{y}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{xlab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Variable Independiente\PYZdq{}}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{ylab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Variable Dependiente\PYZdq{}}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{ggtitle}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Conjunto de entrenamiento train\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{n+nf}{set.seed}\PY{p}{(}\PY{l+m}{1234}\PY{p}{)}
+         \PY{n}{regresion\PYZus{}lineal} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{lm}\PY{p}{(}\PY{n}{y} \PY{o}{\PYZti{}} \PY{n}{x}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{nltrain}\PY{p}{)}
+         \PY{n}{regresion\PYZus{}poly} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{lm}\PY{p}{(}\PY{n}{y} \PY{o}{\PYZti{}} \PY{n}{x} \PY{o}{+} \PY{n}{x2}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{nltrain}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n+nf}{summary}\PY{p}{(}\PY{n}{regresion\PYZus{}poly}\PY{p}{)}
+         \PY{n+nf}{summary}\PY{p}{(}\PY{n}{regresion\PYZus{}lineal}\PY{p}{)}
+         
+         \PY{n+nf}{layout}\PY{p}{(}\PY{n+nf}{matrix}\PY{p}{(}\PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{4}\PY{p}{)}\PY{p}{,} \PY{l+m}{2}\PY{p}{,} \PY{l+m}{2}\PY{p}{,} \PY{n}{byrow} \PY{o}{=} \PY{k+kc}{TRUE}\PY{p}{)}\PY{p}{)}
+         \PY{n+nf}{plot}\PY{p}{(}\PY{n}{regresion\PYZus{}poly}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+
+Call:
+lm(formula = y ~ x + x2, data = nltrain)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-12144661  -2436559   1043313   3459191   7404378 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 115773853   24403860   4.744  0.00318 ** 
+x           -67920362    9509424  -7.142  0.00038 ***
+x2           10514901     826551  12.721 1.45e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7026000 on 6 degrees of freedom
+Multiple R-squared:  0.9973,	Adjusted R-squared:  0.9964 
+F-statistic:  1113 on 2 and 6 DF,  p-value: 1.943e-08
+
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+
+Call:
+lm(formula = y ~ x, data = nltrain)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-45238522 -34545826   7293396  21132303  46707417 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -182740883   32816938  -5.568 0.000843 ***
+x             52167835    5622406   9.279  3.5e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 34400000 on 7 degrees of freedom
+Multiple R-squared:  0.9248,	Adjusted R-squared:  0.9141 
+F-statistic: 86.09 on 1 and 7 DF,  p-value: 3.497e-05
+
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_11_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{se-muestran-los-resultados-de-aplicar-una-regresiuxf3n-lineal-y-una-polinomial-de-segundo-grado.-como-podemos-observar-en-el-caso-lineal-el-error-el-bastante-mayor-que-en-el-polinomial-luego-vamos-a-intentar-afinar-la-precisiuxf3n-de-la-predicciuxf3n-y-ajuste-de-este-modelo-agregandole-muxe1s-caracteruxedsticas-x2-y-x3}{%
+\subsection{Se muestran los resultados de aplicar una regresión lineal,
+y una polinomial de segundo grado. Como podemos observar en el caso
+lineal el error el bastante mayor que en el polinomial, luego vamos a
+intentar afinar la precisión de la predicción y ajuste de este modelo
+agregandole más características: x\^{}2 y
+x\^{}3}\label{se-muestran-los-resultados-de-aplicar-una-regresiuxf3n-lineal-y-una-polinomial-de-segundo-grado.-como-podemos-observar-en-el-caso-lineal-el-error-el-bastante-mayor-que-en-el-polinomial-luego-vamos-a-intentar-afinar-la-precisiuxf3n-de-la-predicciuxf3n-y-ajuste-de-este-modelo-agregandole-muxe1s-caracteruxedsticas-x2-y-x3}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{y\PYZus{}poly\PYZus{}predict} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{predict}\PY{p}{(}\PY{n}{regresion\PYZus{}poly}\PY{p}{,} \PY{n}{nltrain}\PY{p}{)}
+         \PY{n+nf}{ggplot}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{n+nf}{geom\PYZus{}point}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{nltrain}\PY{p}{,} \PY{n+nf}{aes}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{y}\PY{p}{)}\PY{p}{,} \PY{n}{size} \PY{o}{=} \PY{l+m}{0.7}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{geom\PYZus{}line}\PY{p}{(}\PY{n+nf}{aes}\PY{p}{(} \PY{n}{x} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{y\PYZus{}poly\PYZus{}predict}\PY{p}{)}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{red\PYZdq{}}\PY{p}{)} \PY{o}{+}
+           \PY{n+nf}{xlab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Variable Independiente\PYZdq{}}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{ylab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Variable Dependiente\PYZdq{}}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{ggtitle}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Curva de Ajuste sobre Conjunto de Entrenamiento (nltrain)\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x3} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{n}{\PYZca{}3}
+         \PY{n}{regresion\PYZus{}poly} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{lm}\PY{p}{(}\PY{n}{y} \PY{o}{\PYZti{}} \PY{n}{x} \PY{o}{+} \PY{n}{x2} \PY{o}{+} \PY{n}{x3}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{nltrain}\PY{p}{)}
+         \PY{n+nf}{summary}\PY{p}{(}\PY{n}{regresion\PYZus{}poly}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+
+Call:
+lm(formula = y ~ x + x2 + x3, data = nltrain)
+
+Residuals:
+       1        2        3        4        7        8       10       12 
+ 1860114  -691977 -1948857  -405158  4049699 -1200265 -4830283  5977657 
+      13 
+-2810931 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)  
+(Intercept) -109085931   69502154  -1.570   0.1773  
+x             64481673   40388244   1.597   0.1713  
+x2           -13514300    7270884  -1.859   0.1222  
+x3             1366013     412331   3.313   0.0212 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4306000 on 5 degrees of freedom
+Multiple R-squared:  0.9992,	Adjusted R-squared:  0.9987 
+F-statistic:  1979 on 3 and 5 DF,  p-value: 4.182e-08
+
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{y\PYZus{}poly\PYZus{}predict} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{predict}\PY{p}{(}\PY{n}{regresion\PYZus{}poly}\PY{p}{,} \PY{n}{nltrain}\PY{p}{)}
+         \PY{n+nf}{ggplot}\PY{p}{(}\PY{p}{)} \PY{o}{+} 
+         \PY{n+nf}{geom\PYZus{}point}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{nltrain}\PY{p}{,} \PY{n+nf}{aes}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{y}\PY{p}{)}\PY{p}{,} \PY{n}{size} \PY{o}{=} \PY{l+m}{0.9}\PY{p}{)} \PY{o}{+} 
+         \PY{n+nf}{geom\PYZus{}line}\PY{p}{(}\PY{n+nf}{aes}\PY{p}{(} \PY{n}{x} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{y\PYZus{}poly\PYZus{}predict}\PY{p}{)}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{red\PYZdq{}}\PY{p}{)} \PY{o}{+}
+           \PY{n+nf}{xlab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Variable Independiente\PYZdq{}}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{ylab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Variable Dependiente\PYZdq{}}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{ggtitle}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Curva de Ajuste sobre Conjunto de Entrenamiento (nltrain)\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{nltest}\PY{o}{\PYZdl{}}\PY{n}{x2} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n}{nltest}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{n}{\PYZca{}2}
+         \PY{n}{nltest}\PY{o}{\PYZdl{}}\PY{n}{x3} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n}{nltest}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{n}{\PYZca{}3}
+         \PY{n}{y\PYZus{}poly\PYZus{}test\PYZus{}predict} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{predict}\PY{p}{(}\PY{n}{regresion\PYZus{}poly}\PY{p}{,} \PY{n}{nltest}\PY{p}{)}
+         \PY{n+nf}{summary}\PY{p}{(}\PY{n}{y\PYZus{}poly\PYZus{}test\PYZus{}predict}\PY{p}{)}
+         
+         \PY{n+nf}{ggplot}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{n+nf}{geom\PYZus{}point}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{nltest}\PY{p}{,} \PY{n+nf}{aes}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{y}\PY{p}{)}\PY{p}{,} \PY{n}{size} \PY{o}{=} \PY{l+m}{0.9}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{geom\PYZus{}line}\PY{p}{(}\PY{n+nf}{aes}\PY{p}{(} \PY{n}{x} \PY{o}{=} \PY{n}{nltest}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{y\PYZus{}poly\PYZus{}test\PYZus{}predict}\PY{p}{)}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{red\PYZdq{}}\PY{p}{)} \PY{o}{+}
+           \PY{n+nf}{xlab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Variable Independiente\PYZdq{}}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{ylab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Variable Dependiente\PYZdq{}}\PY{p}{)} \PY{o}{+} 
+           \PY{n+nf}{ggtitle}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Curva de Ajuste sobre Conjunto de Validación (nltest)\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+ 29655668  40880323  83753408  99608677 142481762 201272223 
+    \end{verbatim}
+
+    
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{predict\PYZus{}value\PYZus{}poly} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{predict}\PY{p}{(}\PY{n}{regresion\PYZus{}poly}\PY{p}{,} \PY{n+nf}{data.frame}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                                                                  \PY{n}{x2} \PY{o}{=} \PY{l+m}{15}\PY{n}{\PYZca{}2}\PY{p}{,}
+                                                                  \PY{n}{x3} \PY{o}{=} \PY{l+m}{15}\PY{n}{\PYZca{}3}\PY{p}{)}\PY{p}{)}
+         \PY{n}{predict\PYZus{}value\PYZus{}poly}
+\end{Verbatim}
+
+    \textbf{1:} 2427714097.2266
+
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
