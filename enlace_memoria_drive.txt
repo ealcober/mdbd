@@ -1,1 +1,4 @@
 https://docs.google.com/document/d/1_xTYKUJJ-wnhvQpMwkfReFIZr0BqUtcGK6wqn-MKYBk/edit#
+
+# www.ccg.unam.mx/~vinuesa/R4biosciences/docs/Tema9_regresion.html
+# https://medium.com/datos-y-ciencia/introducci%C3%B3n-a-los-modelos-de-regresi%C3%B3n-en-r-6ef5a4c47a8f
