@@ -376,8 +376,10 @@ de los años
 estudiados.}\label{comenzamos-exponiendo-brevemente-unas-cifras-que-ilustran-la-producciuxf3n-de-pluxe1stico-global-en-toneladas-en-serie-temporal-sobre-la-gruxe1fica-de-media-de-auxf1os-que-un-adulto-pasa-escolarizado-a-lo-largo-de-los-auxf1os-estudiados.}}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{gpp}\PY{o}{\PYZlt{}\PYZhy{}}\PY{n+nf}{read.csv}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{sources/global\PYZhy{}plastics\PYZhy{}production.csv\PYZsq{}}\PY{p}{,}\PY{n}{header}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{,}\PY{n}{sep}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{,\PYZdq{}} \PY{p}{,} \PY{n}{quote}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}\PYZdq{}\PYZdq{}}\PY{p}{,}\PY{n}{dec}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{.\PYZdq{}}\PY{p}{,}\PY{n}{fill}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
-         \PY{n}{sch}\PY{o}{\PYZlt{}\PYZhy{}}\PY{n+nf}{read.csv}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{sources/mean\PYZhy{}years\PYZhy{}of\PYZhy{}schooling\PYZhy{}selected\PYZhy{}countries.csv\PYZsq{}}\PY{p}{,}\PY{n}{header}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{,}\PY{n}{sep}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{,\PYZdq{}} \PY{p}{,} \PY{n}{quote}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}\PYZdq{}\PYZdq{}}\PY{p}{,}\PY{n}{dec}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{.\PYZdq{}}\PY{p}{,}\PY{n}{fill}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{gpp}\PY{o}{\PYZlt{}\PYZhy{}}\PY{n+nf}{read.csv}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{sources/global\PYZhy{}plastics\PYZhy{}production.csv\PYZsq{}}\PY{p}{,}\PY{n}{header}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{,}\PY{n}{sep}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{,\PYZdq{}} \PY{p}{,} 
+\PY{n}{quote}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}\PYZdq{}\PYZdq{}}\PY{p}{,}\PY{n}{dec}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{.\PYZdq{}}\PY{p}{,}\PY{n}{fill}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         \PY{n}{sch}\PY{o}{\PYZlt{}\PYZhy{}}\PY{n+nf}{read.csv}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{sources/mean\PYZhy{}years\PYZhy{}of\PYZhy{}schooling\PYZhy{}selected\PYZhy{}countries.csv\PYZsq{}}\PY{p}{,}
+         \PY{n}{header}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{,}\PY{n}{sep}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{,\PYZdq{}} \PY{p}{,} \PY{n}{quote}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}\PYZdq{}\PYZdq{}}\PY{p}{,}\PY{n}{dec}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{.\PYZdq{}}\PY{p}{,}\PY{n}{fill}\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
          
          \PY{n}{gpp}\PY{o}{\PYZdl{}}\PY{n}{Entity} \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kc}{NULL}
          \PY{n}{gpp}\PY{o}{\PYZdl{}}\PY{n}{Code} \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kc}{NULL}
@@ -391,7 +393,7 @@ estudiados.}\label{comenzamos-exponiendo-brevemente-unas-cifras-que-ilustran-la-
          \PY{n+nf}{colnames}\PY{p}{(}\PY{n}{schmean}\PY{p}{)} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Year\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{mean escolarizados\PYZdq{}}\PY{p}{)}
          \PY{n}{prueba} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{merge}\PY{p}{(}\PY{n}{gpp}\PY{p}{,} \PY{n}{schmean}\PY{p}{,} \PY{n}{by.y}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Year\PYZdq{}}\PY{p}{,} \PY{n}{sort} \PY{o}{=} \PY{k+kc}{TRUE}\PY{p}{)}
          
-         \PY{c+c1}{\PYZsh{} Dividimos las cantidades a x10 toneladas (1 unidad son 10 toneladas) por proporcionalidad con la otra magnitud}
+         \PY{c+c1}{\PYZsh{} Dividimos las cantidades a x10 toneladas (1 unidad son 10 toneladas)}
          \PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{`Prod de plastico global`} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{`Prod de plastico global`} \PY{o}{/} \PY{l+m}{10000000}
          
          \PY{c+c1}{\PYZsh{} Imprimimos la tabla y el gráfico con su leyenda correspondiente.}
@@ -402,7 +404,8 @@ estudiados.}\label{comenzamos-exponiendo-brevemente-unas-cifras-que-ilustran-la-
               \PY{n}{xlim}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+m}{1960}\PY{p}{,}\PY{l+m}{2010}\PY{p}{)}\PY{p}{,} \PY{n}{xlab}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Years\PYZdq{}}\PY{p}{,} \PY{n}{ylab}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Value\PYZdq{}}\PY{p}{)}
          \PY{n+nf}{lines}\PY{p}{(}\PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{Year}\PY{p}{,}\PY{n}{prueba}\PY{o}{\PYZdl{}}\PY{n}{`mean escolarizados`}\PY{p}{,}\PY{n}{col}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{red\PYZdq{}}\PY{p}{)}
          
-         \PY{n+nf}{legend}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{bottomleft\PYZdq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Toneladas de plástico producidas\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Media de años de escolarización p/c\PYZdq{}}\PY{p}{)}\PY{p}{,}
+         \PY{n+nf}{legend}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{bottomleft\PYZdq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Toneladas de plástico producidas\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}
+         \PY{l+s}{Media de años de escolarización p/c\PYZdq{}}\PY{p}{)}\PY{p}{,}
                \PY{n}{col}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{blue\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{red\PYZdq{}}\PY{p}{)}\PY{p}{,}
                \PY{n}{pch}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+m}{20}\PY{p}{,}\PY{l+m}{20}\PY{p}{)}\PY{p}{,}
                 \PY{n}{inset}\PY{o}{=}\PY{n+nf}{c}\PY{p}{(}\PY{l+m}{0.005}\PY{p}{,}\PY{l+m}{0.83}\PY{p}{)}
@@ -643,7 +646,8 @@ x\^{}3}\label{se-muestran-los-resultados-de-aplicar-una-regresiuxf3n-lineal-y-un
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}51}]:} \PY{n}{y\PYZus{}poly\PYZus{}predict} \PY{o}{\PYZlt{}\PYZhy{}} \PY{n+nf}{predict}\PY{p}{(}\PY{n}{regresion\PYZus{}poly}\PY{p}{,} \PY{n}{nltrain}\PY{p}{)}
-         \PY{n+nf}{ggplot}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{n+nf}{geom\PYZus{}point}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{nltrain}\PY{p}{,} \PY{n+nf}{aes}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{y}\PY{p}{)}\PY{p}{,} \PY{n}{size} \PY{o}{=} \PY{l+m}{0.7}\PY{p}{)} \PY{o}{+} 
+         \PY{n+nf}{ggplot}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{n+nf}{geom\PYZus{}point}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{nltrain}\PY{p}{,} \PY{n+nf}{aes}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{y}\PY{p}{)}\PY{p}{,}
+          \PY{n}{size} \PY{o}{=} \PY{l+m}{0.7}\PY{p}{)} \PY{o}{+} 
            \PY{n+nf}{geom\PYZus{}line}\PY{p}{(}\PY{n+nf}{aes}\PY{p}{(} \PY{n}{x} \PY{o}{=} \PY{n}{nltrain}\PY{o}{\PYZdl{}}\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{y\PYZus{}poly\PYZus{}predict}\PY{p}{)}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{red\PYZdq{}}\PY{p}{)} \PY{o}{+}
            \PY{n+nf}{xlab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Variable Independiente\PYZdq{}}\PY{p}{)} \PY{o}{+} 
            \PY{n+nf}{ylab}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Variable Dependiente\PYZdq{}}\PY{p}{)} \PY{o}{+} 

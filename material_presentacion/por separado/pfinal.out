@@ -1,0 +1,12 @@
+\BOOKMARK [1][-]{section.1}{Carga de datos y preparaci\363n del espacio de trabajo.}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Cargamos las bibliotecas / librer\355as que utilizamos}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Definimos las funciones user-defined que hemos necesitado}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Nuestra hip\363tesis inicial:}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Queremos encontrar, si existe, una relaci\363n entre el nivel educativo de la poblaci\363n y el nivel de uso de pl\341stico y su gesti\363n en el rango de a\361os 1960-2010.}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.2}{De forma intuitiva, ante el incremento del efecto invernadero y la cantidad de pl\341stico producida industrialmente, una poblaci\363n con mejor formaci\363n y educaci\363n habr\355a de ser m\341s eficiente en el tratamiento de residuos, o en sus elecciones a la hora de escoger en sus compras, otro tipo de residuos no pl\341sticos.}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Comenzamos exponiendo brevemente unas cifras que ilustran la Producci\363n de pl\341stico global en Toneladas, en serie temporal, sobre la gr\341fica de ``media de a\361os que un adulto pasa escolarizado'' a lo largo de los a\361os estudiados.}{}% 7
+\BOOKMARK [1][-]{section.4}{vamos a buscar una relaci\363n entre ambas variables, coloc\341ndolas en ambos ejes respectivos x e y en una gr\341fica de 2d.}{}% 8
+\BOOKMARK [1][-]{section.5}{De forma contraria a como esper\341bamos la proporci\363n aumenta:}{}% 9
+\BOOKMARK [1][-]{section.6}{A lo largo de los a\361os ha ido aumentando el tiempo medio que una persona pasa escolarizada en su vida, y proporcionalmente a \351ste, la cantidad de pl\341stico total producido en esos a\361os.}{}% 10
+\BOOKMARK [1][-]{section.7}{Vamos a tratar de aproximarnos para predicciones posteriores mediante regresi\363n: partimos el conjunto de nuestros datos en 70\045 prueba y 30\045 entrenamiento}{}% 11
+\BOOKMARK [2][-]{subsection.7.1}{Se muestran los resultados de aplicar una regresi\363n lineal, y una polinomial de segundo grado. Como podemos observar en el caso lineal el error el bastante mayor que en el polinomial, luego vamos a intentar afinar la precisi\363n de la predicci\363n y ajuste de este modelo agregandole m\341s caracter\355sticas: x\1362 y x\1363}{section.7}% 12
